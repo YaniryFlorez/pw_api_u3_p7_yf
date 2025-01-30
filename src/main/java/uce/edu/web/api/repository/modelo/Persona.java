@@ -24,6 +24,17 @@ public class Persona {
     @Column(name = "pers_fechaNacimiento")
     private LocalDateTime fechaNacimiento;
 
+    public Persona(Integer id, String nombre, String apellido, LocalDateTime fechaNacimiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Persona(){
+
+    }
+
     // SET Y GET
     public Integer getId() {
         return id;
