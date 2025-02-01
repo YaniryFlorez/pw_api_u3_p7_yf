@@ -3,7 +3,11 @@ package uce.edu.web.api.controller;
 import uce.edu.web.api.service.IPersonaService;
 import uce.edu.web.api.service.to.PersonaTo;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
  
 @Path("/personnas")
@@ -18,16 +22,28 @@ public class PersonaController{
         Integer id=1;
         return this.iPersonaService.buscarPorId(id);
     }
- 
-   
+    @POST
+    @Path("/guardar")
     public void guardar(PersonaTo persona) {
         this.iPersonaService.guardar(persona);
     }
- 
+
+    @PUT
+    @Path("/actualizar")
     public void actualizar(PersonaTo persona) {
         this.iPersonaService.actualizar(persona);
     }
- 
+
+    @PATCH
+    @Path("/actualizar/parcial")
+    public void actualizarParcial(PersonaTo persona) {
+        PersonaTo tmp= this.iPersonaService.buscarPorId(persona.getId());
+        tmp.setNombre(persona.getNombre());
+        this.iPersonaService.actualizar(tmp);
+    }
+
+    @DELETE
+    @Path("/borrar")
     public void borrar(Integer id) {
         this.iPersonaService.borrar(id);
     }
