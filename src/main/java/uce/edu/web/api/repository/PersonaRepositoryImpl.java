@@ -35,7 +35,7 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
     @Override
     public void eliminar(Integer id) {
         // TODO Auto-generated method stub
-        this.entityManager.persist(id);
+        this.entityManager.remove(this.buscarPorId(id));
     }
  
 }
