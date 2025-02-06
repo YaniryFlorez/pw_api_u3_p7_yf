@@ -1,9 +1,7 @@
 package uce.edu.web.api.controller;
 
 import uce.edu.web.api.service.IEstudianteService;
-import uce.edu.web.api.service.IPersonaService;
 import uce.edu.web.api.service.to.EstudianteTo;
-import uce.edu.web.api.service.to.PersonaTo;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;

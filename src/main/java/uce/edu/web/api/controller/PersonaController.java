@@ -9,44 +9,46 @@ import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
- 
-@Path("/personnas")
-public class PersonaController{
+import jakarta.ws.rs.PathParam;
+
+@Path("/personas")
+public class PersonaController {
  
     @Inject
     private IPersonaService iPersonaService;
-   
+ 
     @GET
-    @Path("/buscar")
-    public PersonaTo buscarPorId() {
-        Integer id=22;
+    @Path("/{id}")
+    public PersonaTo buscarPorId(@PathParam("id") Integer id) {
         return this.iPersonaService.buscarPorId(id);
     }
+ 
     @POST
-    @Path("/guardar")
+    @Path("")
     public void guardar(PersonaTo persona) {
         this.iPersonaService.guardar(persona);
     }
-
+ 
     @PUT
-    @Path("/actualizar")
-    public void actualizar(PersonaTo persona) {
+    @Path("/{id}")
+    public void actualizar(PersonaTo persona, @PathParam("id") Integer id) {
+        persona.setId(id);
         this.iPersonaService.actualizar(persona);
     }
-
+ 
     @PATCH
-    @Path("/actualizar/parcial")
-    public void actualizarParcial(PersonaTo persona) {
-        PersonaTo tmp= this.iPersonaService.buscarPorId(persona.getId());
+    @Path("/{id}/nuevo/{cedula}")
+    public void actualizarParcial(PersonaTo persona, @PathParam("id") Integer id, @PathParam("cedula") String cedula) {
+        System.out.println(cedula);
+        PersonaTo tmp = this.iPersonaService.buscarPorId(id);
         tmp.setNombre(persona.getNombre());
         this.iPersonaService.actualizar(tmp);
     }
-
+ 
     @DELETE
-    @Path("/borrar")
-    public void borrar() {
-        Integer id=22;
+    @Path("/{id}")
+    public void borrar(@PathParam("id") Integer id) {
         this.iPersonaService.borrar(id);
     }
-
+ 
 }
