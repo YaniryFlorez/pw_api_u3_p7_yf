@@ -1,7 +1,11 @@
 package uce.edu.web.api.repository;
  
+import java.util.List;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import uce.edu.web.api.repository.modelo.IPersonaRepository;
@@ -37,7 +41,19 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
         // TODO Auto-generated method stub
         this.entityManager.remove(this.buscarPorId(id));
     }
- 
+
+    @Override
+    public List<Persona> buscarTodos() {
+         TypedQuery<Persona> myQuery=this.entityManager.createQuery("", Persona.class) ;
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Persona> buscarPorNombre(String nombre) {
+        TypedQuery<Persona> myQuery =this.entityManager.createQuery("SELECT p from Persona p WHERE p.nombre =:nombre", Persona.class);
+        myQuery.setParameter("nombre", nombre);
+        return myQuery.getResultList();
+    }
 }
  
 
