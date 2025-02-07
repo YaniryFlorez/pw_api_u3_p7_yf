@@ -4,7 +4,6 @@ import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -54,6 +53,14 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
         myQuery.setParameter("nombre", nombre);
         return myQuery.getResultList();
     }
+
+    @Override
+    public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+        TypedQuery<Persona> myQuery=this.entityManager.createQuery("SELECT p from Persona p WHERE p.nombre =:nombre AND p.apellido =:apellido", Persona.class);
+        myQuery.setParameter("nombre", nombre);
+        myQuery.setParameter("apellido", apellido);
+        return myQuery.getResultList();
+     }
 }
  
 

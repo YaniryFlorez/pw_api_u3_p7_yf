@@ -62,11 +62,15 @@ public class PersonaController {
     }
 
     @GET
-    @Path("")
+    @Path("/nombre")
    public List< PersonaTo> buscarPorNombre(@QueryParam("nombre") String nombre){
        return this.iPersonaService.buscarPorNombre(nombre);
    }
 
-
+   @GET
+   @Path("/porNombreApellido")
+   public List<PersonaTo> buscarPorNombreApellido(@QueryParam("nombre") String nombre, @QueryParam("apellido") String apellido){
+       return this.iPersonaService.buscarPorNombreApellido(nombre, apellido);
+    }
  
 }
