@@ -6,6 +6,7 @@ import uce.edu.web.api.service.to.PersonaTo;
 import java.util.List;
 
 import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PATCH;
@@ -17,6 +18,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+
 
 @Path("/personas")
 public class PersonaController {
@@ -36,6 +39,7 @@ public class PersonaController {
  
     @POST
     @Path("")
+    @Consumes(MediaType.APPLICATION_XML)
     public void guardar(PersonaTo persona) {
         this.iPersonaService.guardar(persona);
     }
