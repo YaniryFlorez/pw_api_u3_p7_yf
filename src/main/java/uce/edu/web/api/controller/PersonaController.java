@@ -13,7 +13,10 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/personas")
 public class PersonaController {
@@ -23,8 +26,12 @@ public class PersonaController {
  
     @GET
     @Path("/{id}")
-    public PersonaTo buscarPorId(@PathParam("id") Integer id) {
-        return this.iPersonaService.buscarPorId(id);
+    @Produces(MediaType.APPLICATION_XML)
+    public Response buscarPorId(@PathParam("id") Integer id) {
+        return Response.status(240).header("mensaje", "Persona creada pero en proceso de validacion....")
+                .header("valor1", 500).entity(this.iPersonaService.buscarPorId(id)).build();
+        // return
+        // Response.status(Response.Status.OK).entity(this.iPersonaService.buscarPorId(id)).build();
     }
  
     @POST

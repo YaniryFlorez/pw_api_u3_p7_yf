@@ -27,18 +27,12 @@ public class PersonaServiceImpl implements IPersonaService {
     @Override
     public PersonaTo buscarPorId(Integer id) {
         if (id == null) {
-            // Aquí puedes devolver null, un objeto vacío o alguna respuesta predeterminada
-            return null;  // O también puedes devolver un objeto vacío, según lo que necesites
+            return null; 
         }
-    
         Persona per = this.iPersonaRepository.buscarPorId(id);
-        
         if (per == null) {
-            // Si la persona no se encuentra, puedes decidir qué hacer
-            // Por ejemplo, devolver null o lanzar una excepción personalizada
-            return null;  // O manejarlo según la lógica de tu aplicación
+            return null; 
         }
-        
         return this.mapTo.apply(per);
     }
  

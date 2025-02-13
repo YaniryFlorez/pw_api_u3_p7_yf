@@ -19,11 +19,8 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
     @Override
     public Persona buscarPorId(Integer id) {
         if (id == null) {
-            // Si el id es nulo, se puede retornar null o alguna lógica especial
-            return null;  // O podrías retornar una nueva instancia vacía si es lo que deseas
+            return null;  
         }
-        
-        // Usando find, si no se encuentra la persona, devuelve null sin generar error
         return this.entityManager.find(Persona.class, id);
     }
     
