@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import uce.edu.web.api.repository.modelo.LocalDateTimeAdapter;
 
  @XmlRootElement
 public class PersonaTo implements Serializable {
@@ -49,6 +51,7 @@ public class PersonaTo implements Serializable {
         this.apellido = apellido;
     }
     @XmlElement
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     public LocalDateTime getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -56,6 +59,8 @@ public class PersonaTo implements Serializable {
     public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+
  
 }
  

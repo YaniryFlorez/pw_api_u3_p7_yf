@@ -52,12 +52,14 @@ public class PersonaController {
     }
  
     @PATCH
-    @Path("/{id}/nuevo/{cedula}")
-    public void actualizarParcial(PersonaTo persona, @PathParam("id") Integer id, @PathParam("cedula") String cedula) {
-        System.out.println(cedula);
+    @Path("/{id}")
+
+    @Produces(MediaType.APPLICATION_XML)
+    public PersonaTo actualizarParcial(PersonaTo persona, @PathParam("id") Integer id) {
         PersonaTo tmp = this.iPersonaService.buscarPorId(id);
         tmp.setNombre(persona.getNombre());
         this.iPersonaService.actualizar(tmp);
+        return tmp;
     }
  
     @DELETE
